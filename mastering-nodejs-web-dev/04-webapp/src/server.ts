@@ -5,12 +5,12 @@ const port = 5000;
 
 const server = createServer();
 
-server.on("request", (req, res) => {
+server.on("request", async (req, res) => {
   if (req.url?.endsWith("favicon.ico")) {
     res.statusCode = 404;
     res.end();
   } else {
-    handler(req, res);
+    await handler(req, res);
   }
 });
 
