@@ -12,16 +12,16 @@ function App() {
     { rowNumber: 4, rowDescription: '속옷 구입하기', rowAssignee: 'SJ' }
   ]);
 
-  const addTodo = () => {
+  const addTodo = (description, assignee) => {
     const newTodo = {
       rowNumber: todos.length + 1,
-      rowDescription: 'New Todo',
-      rowAssignee: 'IH'
+      rowDescription: description,
+      rowAssignee: assignee
     };
     setTodos(todos => [...todos, newTodo]);
-    console.log(todos);
+    // console.log(todos);
   };
-  
+
   return (
     <div className="mt-5 container">
       <div className="card">
@@ -31,7 +31,7 @@ function App() {
         <div className="card-body">
           <TodoTable todos={ todos }/>
           <button className="btn btn-primary" onClick={ addTodo }>Add new todo</button>
-          <NewTodoForm />
+          <NewTodoForm addTodo={ addTodo }/>
         </div>
       </div>
     </div>
