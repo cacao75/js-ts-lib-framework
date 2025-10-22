@@ -13,13 +13,18 @@ function App() {
   ]);
 
   const addTodo = (description, assignee) => {
+    let rowNumber;
+    if (todos.length > 0)
+      rowNumber = todos[todos.length - 1].rowNumber + 1;
+    else
+      rowNumber = 1;
+
     const newTodo = {
-      rowNumber: todos.length + 1,
+      rowNumber: rowNumber,
       rowDescription: description,
       rowAssignee: assignee
     };
     setTodos(todos => [...todos, newTodo]);
-    // console.log(todos);
   };
 
   return (
