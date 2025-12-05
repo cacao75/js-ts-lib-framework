@@ -1,6 +1,7 @@
-import TodoRowItem from './TodoRowItem';
+import { TodoRowItem } from './TodoRowItem';
+import TodoModel from '../models/TodoModel';
 
-function TodoTable(props) {
+export const TodoTable = (props: {todos: TodoModel[], deleteTodo: Function}) => {
   return (
     <div>
       <table className="table table-hover">
@@ -25,5 +26,3 @@ function TodoTable(props) {
     </div>
   );
 }
-
-export default TodoTable;

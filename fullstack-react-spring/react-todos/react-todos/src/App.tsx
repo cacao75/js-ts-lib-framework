@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import './App.css';
-import TodoTable from './components/TodoTable';
-import NewTodoForm from './components/NewTodoForm';
+import { TodoTable } from './components/TodoTable';
+import { NewTodoForm } from './components/NewTodoForm';
+import TodoModel from "./models/TodoModel";
 
-function App() {
+export const App = () => {
 
   const [showAddTodoForm, setShowAddTodoForm] = useState(false);
 
@@ -14,22 +15,18 @@ function App() {
     { rowNumber: 4, rowDescription: '속옷 구입하기', rowAssignee: 'SJ' }
   ]);
 
-  const addTodo = (description, assignee) => {
+  const addTodo = (description: string, assignee: string) => {
     let rowNumber;
     if (todos.length > 0)
-      rowNumber = todos[todos.length - 1].rowNumber + 1;
+      rowNumber = todos[todos.length - 1]!.rowNumber + 1;
     else
       rowNumber = 1;
 
-    const newTodo = {
-      rowNumber: rowNumber,
-      rowDescription: description,
-      rowAssignee: assignee
-    };
+    const newTodo = new TodoModel(rowNumber, description, assignee);
     setTodos(todos => [...todos, newTodo]);
   };
 
-  const deleteTodo = (deleteTodoRowNumber) => {
+  const deleteTodo = (deleteTodoRowNumber: number) => {
     setTodos(todos => todos.filter(todo => todo.rowNumber !== deleteTodoRowNumber));
   };
 
@@ -52,5 +49,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
